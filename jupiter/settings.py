@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'api',
     'client',
     'certificate',
+    'dashboard',
 ]
 
 REST_FRAMEWORK = {
