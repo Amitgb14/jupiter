@@ -5,7 +5,7 @@ from django.contrib.auth import (
     login,
     logout,
     )
-from certificate.models import Certificate, CertificateDuration
+from certificate.models import Certificate, CertificateInfo
 from django.utils import timezone
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Field, Fieldset, ButtonHolder, Submit
@@ -31,6 +31,6 @@ class UserLoginForm(forms.Form):
 
 class StandardSSLCreateForm(forms.Form):
     CHOICES = (('Option 1', 'Option 1'),('Option 2', 'Option 2'),)
-    d = CertificateDuration.objects.all()
+    d = CertificateInfo.objects.all()
     certificate_  = forms.ModelChoiceField(queryset=d, widget=forms.RadioSelect, empty_label=None)
     csr_text = forms.CharField(required=True, widget=forms.Textarea)

@@ -3,9 +3,9 @@ from __future__ import unicode_literals
 from rest_framework import serializers
 
 from .models import (Certificate,
-                        CertificateDuration, 
-                        UserCertificate, 
-                        UserActivateCertificate)
+                        CertificateInfo, 
+                        CertificateAssign, 
+                        CertificateActive)
 
 
 class CertificateSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,20 +14,20 @@ class CertificateSerializer(serializers.HyperlinkedModelSerializer):
         fields =  ('id', 'certificate_name', 'status')
 
 
-class CertificateDurationSerializer(serializers.HyperlinkedModelSerializer):
+class CertificateInfoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = CertificateDuration
+        model = CertificateInfo
         fields =  ('id', 'certificate', 'duration', 'cost', 'status')
 
 
-class UserCertificateSerializer(serializers.HyperlinkedModelSerializer):
+class CertificateAssignSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = UserCertificate
+        model = CertificateAssign
         fields =  ('id', 'client', 'certificate_unique_id', 'certificate', 'created_date', 'activate', 'status')
 
 
-class UserActivateCertificateSerializer(serializers.HyperlinkedModelSerializer):
+class CertificateActiveSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = UserActivateCertificate
+        model = CertificateActive
         fields =  ('id', 'certificate', 'certificate_text', 'issued_by', 'issued_date', 'expired_date', 'status')
 

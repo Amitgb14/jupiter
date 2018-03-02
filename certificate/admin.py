@@ -5,7 +5,10 @@ from django.contrib import admin
 from datetime import datetime, timedelta
 from django.utils import timezone
 
-from .models import *
+from .models import (Certificate,
+                        CertificateInfo, 
+                        CertificateAssign,
+                        CertificateActive)
 
 def mark_enable(obj, request, queryset):
         rows_update=queryset.update(status=1)
@@ -29,20 +32,20 @@ class CertificateAdmin(admin.ModelAdmin):
 admin.site.register(Certificate, CertificateAdmin)
 
 
-class CertificateDurationAdmin(admin.ModelAdmin):
+class CertificateInfoAdmin(admin.ModelAdmin):
     list_display = ('id', 'certificate', 'duration', 'cost', 'status')
-admin.site.register(CertificateDuration, CertificateDurationAdmin)
+admin.site.register(CertificateInfo, CertificateInfoAdmin)
 
 
-class UserCertificateAdmin(admin.ModelAdmin):
+class CertificateAssignAdmin(admin.ModelAdmin):
   list_display = ('id', 'client', 'certificate_unique_id', 'certificate', 'created_date', 'activate', 'status')
   list_filter  = ('client', 'certificate',)
   actions = [mark_enable, mark_disable]
   order = ['id']
-admin.site.register(UserCertificate, UserCertificateAdmin)
+admin.site.register(CertificateAssign, CertificateAssignAdmin)
 
 
-class UserActivateCertificateAdmin(admin.ModelAdmin):
+class CertificateActiveAdmin(admin.ModelAdmin):
   list_display = ('id', 'certificate', 'certificate_text', 'issued_by', 'issued_date', 'expired_date', 'remaining_days', 'status')
   actions = [mark_enable, mark_disable]
   order = ['id']
@@ -55,5 +58,5 @@ class UserActivateCertificateAdmin(admin.ModelAdmin):
       now = timezone.now()
       day = obj.expired_date - now
       return day.days
-admin.site.register(UserActivateCertificate, UserActivateCertificateAdmin)
+admin.site.register(CertificateActive, CertificateActiveAdmin)
 

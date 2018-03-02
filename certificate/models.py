@@ -30,7 +30,7 @@ class Certificate(models.Model):
         return self.certificate_name
 
 
-class CertificateDuration(models.Model):
+class CertificateInfo(models.Model):
     certificate = models.ForeignKey(Certificate)
     duration = models.IntegerField('Duration (Years)', default=1, blank=False)
     cost = models.IntegerField('Cost', default=20, blank=False)
@@ -40,12 +40,12 @@ class CertificateDuration(models.Model):
         return "{0} - ({1} Year)".format(self.certificate, self.duration)
 
 
-class UserCertificate(models.Model):
+class CertificateAssign(models.Model):
     client = models.ForeignKey(settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,)
     certificate_unique_id = models.CharField('Certificate Number', max_length=37,
         default=get_random_uuid, blank=False)
-    certificate = models.ForeignKey(CertificateDuration)
+    certificate = models.ForeignKey(CertificateInfo)
     created_date = models.DateTimeField("Created Date", default=timezone.now,
          blank=False)
     activate = models.BooleanField('Activate', default=0, choices=STATUS_CHOICES,
@@ -56,8 +56,8 @@ class UserCertificate(models.Model):
         return "{}-{}".format(self.certificate_unique_id, self.certificate)
 
 
-class UserActivateCertificate(models.Model):
-    certificate = models.ForeignKey(UserCertificate)
+class CertificateActive(models.Model):
+    certificate = models.ForeignKey(CertificateAssign)
     certificate_text = models.TextField("Certificate", blank=False)
     issued_by = models.CharField("Issued By", default=1, max_length=40, 
         choices=INTERMEDIATE_CERTIFICATE, blank=False)

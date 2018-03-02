@@ -3,14 +3,14 @@ from __future__ import unicode_literals
 from rest_framework import viewsets, permissions
 
 from .models import (Certificate,
-                        CertificateDuration, 
-                        UserCertificate, 
-                        UserActivateCertificate)
+                        CertificateInfo, 
+                        CertificateAssign,
+                        CertificateActive)
 
 from .serializers import (CertificateSerializer,
-                        CertificateDurationSerializer, 
-                        UserCertificateSerializer, 
-                        UserActivateCertificateSerializer)
+                        CertificateInfoSerializer, 
+                        CertificateAssignSerializer, 
+                        CertificateActiveSerializer)
 
 
 
@@ -23,26 +23,26 @@ class CertificateViewSet(viewsets.ModelViewSet):
     # permission_classes = permissions.IsAuthenticatedOrReadOnly,
 
 
-class CertificateDurationViewSet(viewsets.ModelViewSet):
+class CertificateInfoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows CertificateDuration to be viewed or edited.
+    API endpoint that allows CertificateInfo to be viewed or edited.
     """
-    queryset = CertificateDuration.objects.all()
-    serializer_class = CertificateDurationSerializer
+    queryset = CertificateInfo.objects.all()
+    serializer_class = CertificateInfoSerializer
     # permission_classes = permissions.IsAuthenticatedOrReadOnly,
 
-class UserCertificateViewSet(viewsets.ModelViewSet):
+class CertificateAssignViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows UserCertificate to be viewed or edited.
+    API endpoint that allows CertificateAssign to be viewed or edited.
     """
-    queryset = UserCertificate.objects.all()
-    serializer_class = UserCertificateSerializer
+    queryset = CertificateAssign.objects.all()
+    serializer_class = CertificateAssignSerializer
     # permission_classes = permissions.IsAuthenticatedOrReadOnly,
 
-class UserActivateCertificateViewSet(viewsets.ModelViewSet):
+class CertificateActiveViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows UserActivateCertificate to be viewed or edited.
+    API endpoint that allows CertificateActive to be viewed or edited.
     """
-    queryset = UserActivateCertificate.objects.all()
-    serializer_class = UserActivateCertificateSerializer
+    queryset = CertificateActive.objects.all()
+    serializer_class = CertificateActiveSerializer
     # permission_classes = permissions.IsAuthenticatedOrReadOnly,
