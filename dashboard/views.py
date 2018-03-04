@@ -30,6 +30,6 @@ def logout_view(request):
 
 
 @login_required(login_url="/login/")
-def dashboard(request):
+def profile(request):
     return render(request, "profile.html")
 

@@ -1,0 +1,43 @@
+
+{% block content %}
+{% include 'header.html' %}
+{% load static %}
+{% load custom_tags %}
+
+<div class="alert">
+ <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+ This is an alert box.
+</div>
+
+<!-- Profile Box -->
+<div id="profile_box" class="container">
+  <div class="col-sm-2">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+          <ul class="nav navbar-nav">
+            <li class="active showTab_" target="profile_"><a href="/dashboard/">My Account</a></li>
+            <li class="showTab_" target="overview"><a href="#overview">Overview</a></li>
+            <li class="showTab_" target="certificate"><a href="#certificate">Certificate</a></li>
+            <li class="showTab_" target="notification"><a href="#notification">Notification</a></li>
+            <li class="showTab_" target="history"><a href="#history">History</a></li>
+            <li class="showTab_" target="reviews"><a href="#reviews">Reviews <span class="badge">1,118</span></a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-sm-10">
+    <!-- My Account -->
+    <!-- end My Account -->
+    <h3>Hello</h3><br>
+    <!-- Overview -->
+    {% include 'overview.html' %}
+    <!-- end Overview -->
+  </div>
+
+
+
+</div>
+{% include 'footer.html' %}
+{% endblock content %}
